@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Created by Mark on 20/11/2014.
+ * Created by Markasdc on 20/11/2014.
  */
 public class FragmentA extends Fragment implements View.OnClickListener {
 
