@@ -15,11 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Created by Markasdc on 20/11/2014.
+ * Created by Markasdcasdad on 20/11/2014.
+	testest
  */
 public class FragmentA extends Fragment implements View.OnClickListener {
 
     View v;
+	int test;
 
     TextView wattCount;
 
