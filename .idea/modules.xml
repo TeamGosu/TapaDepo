@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Tapa.iml" filepath="$PROJECT_DIR$/Tapa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TapaDepo.iml" filepath="$PROJECT_DIR$/TapaDepo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

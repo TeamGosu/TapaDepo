@@ -10,4 +10,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Upgrades Screen"
         android:id="@+id/textView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Increase 1"
+        android:id="@+id/increaseWatt" />
 </LinearLayout>

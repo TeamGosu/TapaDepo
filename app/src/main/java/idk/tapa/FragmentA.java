@@ -1,6 +1,7 @@
 package idk.tapa;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.Toast;
  */
 public class FragmentA extends Fragment implements View.OnClickListener {
 
+    private static final int RESULT_OK = 1;
     View v;
 
     TextView wattCount;
@@ -46,7 +48,7 @@ public class FragmentA extends Fragment implements View.OnClickListener {
 
 
         //FONTS
-        //Typeface mFont = Typeface.createFromAsset(getAssets(), "fonts/arial.tff");
+        //Typeface mFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arial.tff");
         //wattCount.setTypeface(mFont);
     }
 
@@ -84,5 +86,17 @@ public class FragmentA extends Fragment implements View.OnClickListener {
            Intent addFoodScreen = new Intent(getActivity().getApplicationContext(), upgrades.class);
            startActivityForResult(addFoodScreen, 1);
         }
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1){
+            if (resultCode == RESULT_OK)
+            {
+                String result = data.getStringExtra("result");
+                Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                ((main)getActivity()).incPwatt(Integer.valueOf(result));
+            }
+        }
+
     }
 }

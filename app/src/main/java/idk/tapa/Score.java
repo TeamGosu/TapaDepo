@@ -37,5 +37,10 @@ public class Score {
         watts += 1;
     }
 
+    public void passiveIncreaseScore()
+    {
+        watts += Pwatts;
+    }
+
 
 }

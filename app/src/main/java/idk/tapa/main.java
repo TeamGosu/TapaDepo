@@ -101,7 +101,7 @@ public class main extends FragmentActivity {
     };
 
     private void updateStatus() {
-        score.increaseScore();
+        score.passiveIncreaseScore();
 
     }
 
@@ -136,7 +136,7 @@ public class main extends FragmentActivity {
 
 
     class FragmentPagerAdapter extends FragmentStatePagerAdapter {
-        private Map<Integer, Fragment> mPageReferenceMap = new HashMap<Integer, Fragment>();
+        //private Map<Integer, Fragment> mPageReferenceMap = new HashMap<Integer, Fragment>();
         SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
 
 
@@ -152,12 +152,12 @@ public class main extends FragmentActivity {
             {
                 fragment=new FragmentA();
 
-                mPageReferenceMap.put(Integer.valueOf(i), fragment);
+                //mPageReferenceMap.put(Integer.valueOf(i), fragment);
             }
             if(i==1)
             {
                 fragment=new FragmentB();
-                mPageReferenceMap.put(Integer.valueOf(i), fragment);
+                //mPageReferenceMap.put(Integer.valueOf(i), fragment);
             }
             return fragment;
         }
@@ -231,11 +231,14 @@ public class main extends FragmentActivity {
         }
     }
 
+    public void incPwatt(Integer amount)
+    {
+        score.incPwatts(amount);
+    }
+
     public float audioVolume()
     {
         return volume;
     }
-
-
 
 }
