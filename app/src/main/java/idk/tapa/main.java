@@ -3,6 +3,7 @@ package idk.tapa;
 
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -18,8 +19,14 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimerTask;
+
+import java.util.logging.LogRecord;
 
 public class main extends FragmentActivity {
+
+    private int mInternal = 1000;
+    private Handler mHandler;
 
     ViewPager viewPager;
     FragmentPagerAdapter fm;
@@ -68,7 +75,45 @@ public class main extends FragmentActivity {
 
         //Initialise score
         score = new Score();
+
+        //Initialise handler
+        mHandler = new Handler();
+        startRepeatingTask();
     }
+
+
+
+    Runnable mStatusChecker = new Runnable() {
+        @Override
+        public void run() {
+            updateStatus();
+            FragmentA fragmenta = (FragmentA)fm.getRegisteredFragment(0);
+            FragmentB fragment = (FragmentB)fm.getRegisteredFragment(1);
+            if (fragmenta != null) {
+                fragmenta.updateView();
+                fragment.updateView();
+            }
+            mHandler.postDelayed(mStatusChecker, mInternal);
+
+        }
+
+
+    };
+
+    private void updateStatus() {
+        score.increaseScore();
+
+    }
+
+    void startRepeatingTask()
+    {
+        mStatusChecker.run();
+    }
+    void stopRepeatingTask()
+    {
+        mHandler.removeCallbacks(mStatusChecker);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -162,26 +207,35 @@ public class main extends FragmentActivity {
         */
     }
 
+
+
+
     public Integer getScore()
     {
         return score.getWatts();
     }
 
+    public Integer getPwatt()
+    {
+        return score.getPwatts();
+    }
+
     public void increaseScore()
     {
         score.increaseScore();
-
         FragmentA fragmenta = (FragmentA)fm.getRegisteredFragment(0);
         FragmentB fragment = (FragmentB)fm.getRegisteredFragment(1);
-
-        fragmenta.updateView();
-        fragment.updateView();
-
+        if (fragmenta != null) {
+            fragmenta.updateView();
+            fragment.updateView();
+        }
     }
 
     public float audioVolume()
     {
         return volume;
     }
+
+
 
 }

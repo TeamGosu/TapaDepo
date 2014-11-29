@@ -16,14 +16,13 @@ import android.widget.Toast;
 
 /**
  * Created by Mark on 20/11/2014.
-	testest
-	hey mark, we are going in, sneaky, beaky like!
  */
 public class FragmentA extends Fragment implements View.OnClickListener {
 
     View v;
 
     TextView wattCount;
+    TextView pwattCount;
 
     //sound pool
     SoundPool soundPool;
@@ -41,6 +40,7 @@ public class FragmentA extends Fragment implements View.OnClickListener {
         btnUpgrades.setOnClickListener(this);
 
         wattCount = (TextView) v.findViewById(R.id.wattCount);
+        pwattCount = (TextView) v.findViewById(R.id.pwattCount);
 
         return v;
 
@@ -54,6 +54,7 @@ public class FragmentA extends Fragment implements View.OnClickListener {
     {
 
         wattCount.setText(((main)getActivity()).getScore().toString());
+        pwattCount.setText(((main)getActivity()).getPwatt().toString() + " score /s");
     }
 
 

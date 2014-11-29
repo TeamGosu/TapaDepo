@@ -19,6 +19,8 @@
         android:layout_height="fill_parent"
         android:weightSum="1">
 
+
+
         <TextView
             android:id="@+id/wattCount"
             android:editable="false"
@@ -29,8 +31,22 @@
             android:background="#FF000000"
             android:textSize="50dp"
             android:gravity="center"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/pwattCount"
+            android:editable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoText="false"
+            android:textColor="#fffffbfb"
+            android:background="#FF000000"
+            android:textSize="21dp"
+            android:gravity="center"
             android:layout_gravity="center"
-            android:layout_marginBottom="200dp" />
+            android:layout_marginBottom="200dp"/>
+
+
 
         <ImageButton
             android:id="@+id/btnTap"
