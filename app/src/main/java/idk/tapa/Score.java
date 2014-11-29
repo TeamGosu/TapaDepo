@@ -42,5 +42,9 @@ public class Score {
         watts += Pwatts;
     }
 
+    public void setScore(Integer newWatts)
+    {
+        watts = newWatts;
+    }
 
 }

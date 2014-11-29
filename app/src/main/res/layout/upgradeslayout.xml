@@ -15,5 +15,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Increase 1"
-        android:id="@+id/increaseWatt" />
+        android:id="@+id/increaseWatt"
+        android:clickable="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cost: 100w"
+        android:id="@+id/textView2" />
+
 </LinearLayout>

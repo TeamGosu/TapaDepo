@@ -55,8 +55,8 @@ public class FragmentA extends Fragment implements View.OnClickListener {
     public void updateView()
     {
 
-        wattCount.setText(((main)getActivity()).getScore().toString());
-        pwattCount.setText(((main)getActivity()).getPwatt().toString() + " score /s");
+        wattCount.setText(((main)getActivity()).getScore().toString() + " Watts");
+        pwattCount.setText(((main)getActivity()).getPwatt().toString() + " Watts /s");
     }
 
 
@@ -83,8 +83,10 @@ public class FragmentA extends Fragment implements View.OnClickListener {
 
        } else if (targetId == R.id.btnUpgrades){
            Toast.makeText(getActivity().getApplicationContext(), "Upgrades", Toast.LENGTH_SHORT).show();
-           Intent addFoodScreen = new Intent(getActivity().getApplicationContext(), upgrades.class);
-           startActivityForResult(addFoodScreen, 1);
+           Intent upgradesScreen = new Intent(getActivity().getApplicationContext(), upgrades.class);
+
+           upgradesScreen.putExtra("score", ((main)getActivity()).getScore());
+           startActivityForResult(upgradesScreen, 1);
         }
     }
 
@@ -93,7 +95,8 @@ public class FragmentA extends Fragment implements View.OnClickListener {
             if (resultCode == RESULT_OK)
             {
                 String result = data.getStringExtra("result");
-                Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                String newWatts = data.getStringExtra("newScore");
+                ((main)getActivity()).setScore(Integer.valueOf(newWatts));
                 ((main)getActivity()).incPwatt(Integer.valueOf(result));
             }
         }

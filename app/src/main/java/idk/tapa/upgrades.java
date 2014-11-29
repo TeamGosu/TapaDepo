@@ -13,6 +13,8 @@ import android.widget.Toast;
 public class upgrades extends Activity {
 
     Button button;
+    Integer score;
+
 
     public void onCreate(Bundle savedInstanceState)
     {
@@ -21,12 +23,24 @@ public class upgrades extends Activity {
 
         button = (Button)findViewById(R.id.increaseWatt);
 
+        button.setEnabled(false);
+
+        score = getIntent().getIntExtra("score", 1);
+        Toast.makeText(getApplicationContext(), score.toString(), Toast.LENGTH_SHORT).show();
+
+        if (score >= 100)
+        {
+            button.setEnabled(true);
+            score = score-100;
+        }
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Score/s Increased by 1", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Passive Watts Increased by 1", Toast.LENGTH_SHORT).show();
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("result", "1");
+                returnIntent.putExtra("newScore", score.toString());
                 setResult(1, returnIntent);
                 finish();
 

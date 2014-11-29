@@ -215,6 +215,11 @@ public class main extends FragmentActivity {
         return score.getWatts();
     }
 
+    public void setScore(Integer newWatts)
+    {
+        score.setScore(newWatts);
+    }
+
     public Integer getPwatt()
     {
         return score.getPwatts();

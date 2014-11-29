@@ -63,7 +63,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="btnUpgrades"
+            android:text="Upgrades"
             android:id="@+id/btnUpgrades"
             android:layout_gravity="center_horizontal" />
 
