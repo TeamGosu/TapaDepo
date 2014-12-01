@@ -41,23 +41,23 @@ public class FragmentB extends Fragment implements View.OnClickListener {
 
         View v = inflater.inflate(R.layout.activity_fragmentb, container, false);
 
-        wattCount = (TextView) v.findViewById(R.id.textView);
-        tapButton = (ImageButton) v.findViewById(R.id.btnTap);
-        tapButton.setOnClickListener(this);
+        //wattCount = (TextView) v.findViewById(R.id.textView);
+       // tapButton = (ImageButton) v.findViewById(R.id.btnTap);
+       // tapButton.setOnClickListener(this);
 
         // Sets the tag
-       myImage.setTag(IMAGEVIEW_TAG);
-       myImage = (ImageView) v.findViewById(R.id.image);
+      // myImage.setTag(IMAGEVIEW_TAG);
+     //  myImage = (ImageView) v.findViewById(R.id.image);
 
         // set the listener to the dragging data
-        myImage.setOnLongClickListener(new MyClickListener());
+       // myImage.setOnLongClickListener(new MyClickListener());
         v.findViewById(R.id.toplinear).setOnDragListener(new MyDragListener());
         v.findViewById(R.id.bottomlinear).setOnDragListener(new MyDragListener());
         return v;
     }
 
     public void updateView() {
-        wattCount.setText(((main) getActivity()).getScore().toString());
+        //wattCount.setText(((main) getActivity()).getScore().toString());
     }
 
     @Override
@@ -188,7 +188,7 @@ public class FragmentB extends Fragment implements View.OnClickListener {
                 return true;
             }
         }
-    }
+ }
 
 
 
