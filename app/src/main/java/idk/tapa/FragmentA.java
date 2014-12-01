@@ -54,7 +54,6 @@ public class FragmentA extends Fragment implements View.OnClickListener {
 
     public void updateView()
     {
-
         wattCount.setText(((main)getActivity()).getScore().toString() + " Watts");
         pwattCount.setText(((main)getActivity()).getPwatt().toString() + " Watts /s");
     }

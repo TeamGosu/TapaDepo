@@ -28,7 +28,7 @@ public class main extends FragmentActivity {
     private int mInternal = 1000;
     private Handler mHandler;
 
-    ViewPager viewPager;
+    CustomViewPager viewPager;
     FragmentPagerAdapter fm;
 
     //ViewPager viewPager=null;
@@ -40,14 +40,26 @@ public class main extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pager);
 
+
+
         //ViewPager
-        viewPager= (ViewPager) findViewById(R.id.pager);
+        viewPager= (CustomViewPager) findViewById(R.id.pager);
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
         //Fragment
         fm = new FragmentPagerAdapter(getSupportFragmentManager());
 
         viewPager.setAdapter(fm);
+
+        viewPager.setOnTouchListener(new OnSwipeTouchListener() {
+            public void onSwipeLeft(){
+
+                if (score.getWatts() > 10)
+                {
+                    CustomViewPager.enabled = true;
+                }
+            }
+        });
 
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -56,7 +68,11 @@ public class main extends FragmentActivity {
             }
             @Override
             public void onPageSelected(int position) {
-                fm.getRegisteredFragment(viewPager.getCurrentItem());
+               // if (position <= 0)
+               // {
+               //     viewPager.setCurrentItem(0);
+               // }
+                //fm.getRegisteredFragment(viewPager.getCurrentItem());
             }
 
             @Override
@@ -234,6 +250,7 @@ public class main extends FragmentActivity {
             fragmenta.updateView();
             fragment.updateView();
         }
+
     }
 
     public void incPwatt(Integer amount)
