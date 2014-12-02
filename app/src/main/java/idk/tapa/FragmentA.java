@@ -10,8 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +29,8 @@ public class FragmentA extends Fragment implements View.OnClickListener {
 
     TextView wattCount;
     TextView pwattCount;
+
+    ImageView animate;
 
     //sound pool
     SoundPool soundPool;
@@ -43,6 +49,16 @@ public class FragmentA extends Fragment implements View.OnClickListener {
 
         wattCount = (TextView) v.findViewById(R.id.wattCount);
         pwattCount = (TextView) v.findViewById(R.id.pwattCount);
+
+        animate = (ImageView) v.findViewById(R.id.square);
+
+        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+
+        anim.setInterpolator(new LinearInterpolator());
+        anim.setRepeatCount(Animation.INFINITE);
+        anim.setDuration(1000);
+
+        animate.startAnimation(anim);
 
         return v;
 

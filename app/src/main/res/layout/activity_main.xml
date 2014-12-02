@@ -46,7 +46,9 @@
             android:layout_gravity="center"
             android:layout_marginBottom="200dp"/>
 
-
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
         <ImageButton
             android:id="@+id/btnTap"
@@ -59,6 +61,14 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center" />
 
+          <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/square"
+            android:src="@drawable/finger"/>
+
+
+        </RelativeLayout>
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
