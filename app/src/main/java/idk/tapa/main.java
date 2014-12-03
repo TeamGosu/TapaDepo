@@ -2,6 +2,7 @@ package idk.tapa;
 
 
 import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -34,6 +35,11 @@ public class main extends FragmentActivity {
     //ViewPager viewPager=null;
     Score score;
     float volume;
+
+    //sound pool
+    SoundPool soundPool;
+    int soundID;
+    boolean loaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +94,18 @@ public class main extends FragmentActivity {
         float maxVolume = (float) audioManager
                 .getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         volume = actualVolume / maxVolume;
+
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        soundPool
+                = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int SampleId, int status) {
+                loaded = true;
+            }
+        });
+
+        soundID = soundPool.load(this, R.raw.shortclick, 1);
 
         //Initialise score
         score = new Score();
@@ -223,9 +241,6 @@ public class main extends FragmentActivity {
         */
     }
 
-
-
-
     public Integer getScore()
     {
         return score.getWatts();
@@ -258,9 +273,18 @@ public class main extends FragmentActivity {
         score.incPwatts(amount);
     }
 
-    public float audioVolume()
+    //public float audioVolume()
+   // {
+    //    return volume;
+    //}
+
+    public boolean audioLoaded() {
+        return loaded;
+    }
+
+    public void playClick()
     {
-        return volume;
+        soundPool.play(soundID, volume, volume, 1, 0, 1f);
     }
 
 }

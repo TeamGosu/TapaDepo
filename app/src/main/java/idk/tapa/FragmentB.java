@@ -63,10 +63,10 @@ public class FragmentB extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btnTap:
 
-                if (loaded) {
-                    soundPool.play(soundID, ((main) getActivity()).audioVolume(), ((main) getActivity()).audioVolume(), 1, 0, 1f);
+               // if (loaded) {
+                //    soundPool.play(soundID, ((main) getActivity()).audioVolume(), ((main) getActivity()).audioVolume(), 1, 0, 1f);
                     //Log.e("Test", "Played sound");
-                }
+               // }
 
                 ((main) getActivity()).increaseScore();
                 wattCount.setText(((main) getActivity()).getScore().toString());

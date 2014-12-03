@@ -32,10 +32,7 @@ public class FragmentA extends Fragment implements View.OnClickListener {
 
     ImageView animate;
 
-    //sound pool
-    SoundPool soundPool;
-    int soundID;
-    boolean loaded = false;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)  {
@@ -44,7 +41,7 @@ public class FragmentA extends Fragment implements View.OnClickListener {
         ImageButton tapButton = (ImageButton) v.findViewById(R.id.btnTap);
         tapButton.setOnClickListener(this);
 
-        Button btnUpgrades = (Button) v.findViewById(R.id.btnUpgrades);
+        ImageButton btnUpgrades = (ImageButton) v.findViewById(R.id.btnUpgrades);
         btnUpgrades.setOnClickListener(this);
 
         wattCount = (TextView) v.findViewById(R.id.wattCount);
@@ -52,11 +49,11 @@ public class FragmentA extends Fragment implements View.OnClickListener {
 
         animate = (ImageView) v.findViewById(R.id.square);
 
-        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+        RotateAnimation anim = new RotateAnimation(0f, 25f);
 
         anim.setInterpolator(new LinearInterpolator());
         anim.setRepeatCount(Animation.INFINITE);
-        anim.setDuration(1000);
+        anim.setDuration(500);
 
         animate.startAnimation(anim);
 
@@ -72,6 +69,7 @@ public class FragmentA extends Fragment implements View.OnClickListener {
     {
         wattCount.setText(((main)getActivity()).getScore().toString() + " Watts");
         pwattCount.setText(((main)getActivity()).getPwatt().toString() + " Watts /s");
+
     }
 
 
@@ -80,18 +78,10 @@ public class FragmentA extends Fragment implements View.OnClickListener {
        int targetId = v.getId();
        if (targetId == R.id.btnTap) {
 
-           getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
-           soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
-           soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
-               @Override
-               public void onLoadComplete(SoundPool soundPool, int SampleId, int status) {
-                   loaded = true;
-               }
-           });
 
-           soundID = soundPool.load(getActivity(), R.raw.shortclick, 1);
-           if (loaded) {
-               soundPool.play(soundID, ((main) getActivity()).audioVolume(), ((main) getActivity()).audioVolume(), 1, 0, 1f);
+           if (((main)getActivity()).audioLoaded()) {
+               Log.e("audio", "click");
+               ((main)getActivity()).playClick();
            }
 
            ((main) getActivity()).increaseScore();
