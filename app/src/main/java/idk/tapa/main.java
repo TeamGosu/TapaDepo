@@ -36,7 +36,7 @@ public class main extends FragmentActivity {
     Score score;
     float volume;
 
-    //sound pool
+    //Sound pool
     SoundPool soundPool;
     int soundID;
     boolean loaded = false;
@@ -45,8 +45,6 @@ public class main extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pager);
-
-
 
         //ViewPager
         viewPager= (CustomViewPager) findViewById(R.id.pager);
@@ -60,6 +58,7 @@ public class main extends FragmentActivity {
         viewPager.setOnTouchListener(new OnSwipeTouchListener() {
             public void onSwipeLeft(){
 
+                //If upgrade exists allow scroll right to left
                 if (score.getWatts() > 10)
                 {
                     CustomViewPager.enabled = true;
@@ -110,12 +109,10 @@ public class main extends FragmentActivity {
         //Initialise score
         score = new Score();
 
-        //Initialise handler
+        //Initialise handler for passive watt increase
         mHandler = new Handler();
         startRepeatingTask();
     }
-
-
 
     Runnable mStatusChecker = new Runnable() {
         @Override
@@ -272,11 +269,6 @@ public class main extends FragmentActivity {
     {
         score.incPwatts(amount);
     }
-
-    //public float audioVolume()
-   // {
-    //    return volume;
-    //}
 
     public boolean audioLoaded() {
         return loaded;

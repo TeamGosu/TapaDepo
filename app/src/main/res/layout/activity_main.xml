@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context=".main"
     android:clickable="false"
-    android:background="#01DF01"
+    android:background="@drawable/background"
     android:tag="button23"
     android:id="@+id/button">
 
@@ -24,9 +24,8 @@
             android:editable="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#ff000000"
             android:autoText="false"
-            android:textColor="#fffffbfb"
-            android:background="#FF000000"
             android:textSize="50dp"
             android:gravity="center"
             android:layout_gravity="center" />

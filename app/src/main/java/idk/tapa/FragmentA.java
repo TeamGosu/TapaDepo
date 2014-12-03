@@ -2,37 +2,31 @@ package idk.tapa;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.media.AudioManager;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Type;
+
 /**
- * Created by Mark on 20/11/2014.
+ * Fragment A - First page. Button Activity
  */
 public class FragmentA extends Fragment implements View.OnClickListener {
 
     private static final int RESULT_OK = 1;
-    View v;
 
     TextView wattCount;
     TextView pwattCount;
-
     ImageView animate;
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)  {
@@ -57,17 +51,19 @@ public class FragmentA extends Fragment implements View.OnClickListener {
 
         animate.startAnimation(anim);
 
+        //FONTS
+        Typeface ledFont = Typeface.createFromAsset( getActivity().getAssets(), "fonts/led.ttf");
+        wattCount.setTypeface(ledFont);
+
         return v;
 
 
-        //FONTS
-        //Typeface mFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arial.tff");
-        //wattCount.setTypeface(mFont);
+
     }
 
     public void updateView()
     {
-        wattCount.setText(((main)getActivity()).getScore().toString() + " Watts");
+        wattCount.setText(((main)getActivity()).getScore().toString());
         pwattCount.setText(((main)getActivity()).getPwatt().toString() + " Watts /s");
 
     }
@@ -78,13 +74,11 @@ public class FragmentA extends Fragment implements View.OnClickListener {
        int targetId = v.getId();
        if (targetId == R.id.btnTap) {
 
-
            if (((main)getActivity()).audioLoaded()) {
-               Log.e("audio", "click");
                ((main)getActivity()).playClick();
            }
 
-           ((main) getActivity()).increaseScore();
+           ((main)getActivity()).increaseScore();
 
        } else if (targetId == R.id.btnUpgrades){
            Toast.makeText(getActivity().getApplicationContext(), "Upgrades", Toast.LENGTH_SHORT).show();
