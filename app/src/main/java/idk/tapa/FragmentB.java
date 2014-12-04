@@ -8,6 +8,7 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,7 @@ import android.widget.Toast;
 
 public class FragmentB extends Fragment implements View.OnClickListener {
 
-    //Score Scount
+    //Score count
     TextView wattCount;
 
     //sound pool
@@ -34,12 +35,10 @@ public class FragmentB extends Fragment implements View.OnClickListener {
     //drag variables
     private static final String IMAGEVIEW_TAG = "The Android Logo";
 
-    @Override
+   @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.activity_fragmentb, container, false);
-
-        //wattCount = (TextView) v.findViewById(R.id.textView);
 
         //find image
         ImageView myImage = (ImageView) v.findViewById(R.id.image);
@@ -51,11 +50,16 @@ public class FragmentB extends Fragment implements View.OnClickListener {
         myImage.setOnLongClickListener(new MyClickListener());
         v.findViewById(R.id.toplinear).setOnDragListener(new MyDragListener());
         v.findViewById(R.id.bottomlinear).setOnDragListener(new MyDragListener());
+
+       // set wattcount view
+       wattCount = (TextView) v.findViewById(R.id.wattCountView);
+
         return v;
     }
 
     public void updateView() {
-        //wattCount.setText(((main) getActivity()).getScore().toString());
+        // update wattcount text
+        wattCount.setText(((main) getActivity()).getScore().toString() + " Watts");
     }
 
     @Override
@@ -90,8 +94,6 @@ public class FragmentB extends Fragment implements View.OnClickListener {
         public boolean onLongClick(View view) {
             // create it from the object's tag
             ClipData.Item item = new ClipData.Item((CharSequence) view.getTag());
-
-
             String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
             ClipData data = new ClipData(view.getTag().toString(), mimeTypes, item);
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
@@ -110,9 +112,18 @@ public class FragmentB extends Fragment implements View.OnClickListener {
         Drawable normalShape = getResources().getDrawable(R.drawable.normal_shape);
         Drawable targetShape = getResources().getDrawable(R.drawable.target_shape);
 
+        /*
+        public void fragBIncScore(){
+
+            Main.increaseScore();
+            Log.d("ACTION_DRAG_ENTERED", "after fragBIncScore" + Main.getScore());
+        }
+        */
+
         @Override
         public boolean onDrag(View v, DragEvent event) {
 
+            main Main = new main();
 
             switch (event.getAction()) {
                 case DragEvent.ACTION_DRAG_STARTED:
@@ -121,6 +132,8 @@ public class FragmentB extends Fragment implements View.OnClickListener {
                 //the drag point has entered the bounding box of the View
                 case DragEvent.ACTION_DRAG_ENTERED:
                     v.setBackground(targetShape);    //change the shape of the view
+                    //fragBIncScore();
+                    Main.increaseScore();
                     break;
 
                 //the user has moved the drag shadow outside the bounding box of the View
@@ -144,11 +157,12 @@ public class FragmentB extends Fragment implements View.OnClickListener {
                         containView.addView(view);
                         view.setVisibility(View.VISIBLE);
                     } else {
+                        //the view is not bottom linear
                         View view = (View) event.getLocalState();
                         view.setVisibility(View.VISIBLE);
-                        Context context = getActivity(); // was initially getApplicationContext();
+                        Context context = getActivity();
                         Toast.makeText(context, "You can't drop the image here",
-                                Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_LONG).show();
                         break;
                     }
                     break;
