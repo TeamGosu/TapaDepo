@@ -112,18 +112,8 @@ public class FragmentB extends Fragment implements View.OnClickListener {
         Drawable normalShape = getResources().getDrawable(R.drawable.normal_shape);
         Drawable targetShape = getResources().getDrawable(R.drawable.target_shape);
 
-        /*
-        public void fragBIncScore(){
-
-            Main.increaseScore();
-            Log.d("ACTION_DRAG_ENTERED", "after fragBIncScore" + Main.getScore());
-        }
-        */
-
         @Override
         public boolean onDrag(View v, DragEvent event) {
-
-            main Main = new main();
 
             switch (event.getAction()) {
                 case DragEvent.ACTION_DRAG_STARTED:
@@ -132,8 +122,7 @@ public class FragmentB extends Fragment implements View.OnClickListener {
                 //the drag point has entered the bounding box of the View
                 case DragEvent.ACTION_DRAG_ENTERED:
                     v.setBackground(targetShape);    //change the shape of the view
-                    //fragBIncScore();
-                    Main.increaseScore();
+                    ((main)getActivity()).increaseScore();
                     break;
 
                 //the user has moved the drag shadow outside the bounding box of the View
