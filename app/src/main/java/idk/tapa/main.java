@@ -119,13 +119,16 @@ public class main extends FragmentActivity {
         public void run() {
             updateStatus();
             FragmentA fragmenta = (FragmentA)fm.getRegisteredFragment(0);
-            FragmentB fragment = (FragmentB)fm.getRegisteredFragment(1);
+            FragmentB fragmentb = (FragmentB)fm.getRegisteredFragment(1);
+            FragmentC fragmentc = (FragmentC)fm.getRegisteredFragment(2);
+            FragmentD fragmentd = (FragmentD)fm.getRegisteredFragment(3);
             if (fragmenta != null) {
                 fragmenta.updateView();
-                fragment.updateView();
+                fragmentb.updateView();
+                fragmentc.updateView();
+                fragmentd.updateView();
             }
             mHandler.postDelayed(mStatusChecker, mInternal);
-
         }
 
 
@@ -190,6 +193,16 @@ public class main extends FragmentActivity {
                 fragment=new FragmentB();
                 //mPageReferenceMap.put(Integer.valueOf(i), fragment);
             }
+            if(i==2)
+            {
+                fragment=new FragmentC();
+                //mPageReferenceMap.put(Integer.valueOf(i), fragment);
+            }
+            if(i==3)
+            {
+                fragment=new FragmentD();
+                //mPageReferenceMap.put(Integer.valueOf(i), fragment);
+            }
             return fragment;
         }
 
@@ -207,6 +220,14 @@ public class main extends FragmentActivity {
                 return "BUTTON";
             }
             if(position==1)
+            {
+                return "FRICTION";
+            }
+            if(position==2)
+            {
+                return "ON/OFF";
+            }
+            if(position==3)
             {
                 return "SPIN";
             }
@@ -257,10 +278,14 @@ public class main extends FragmentActivity {
     {
         score.increaseScore();
         FragmentA fragmenta = (FragmentA)fm.getRegisteredFragment(0);
-        FragmentB fragment = (FragmentB)fm.getRegisteredFragment(1);
+        FragmentB fragmentb = (FragmentB)fm.getRegisteredFragment(1);
+        FragmentC fragmentc = (FragmentC)fm.getRegisteredFragment(2);
+        FragmentD fragmentd = (FragmentD)fm.getRegisteredFragment(3);
         if (fragmenta != null) {
             fragmenta.updateView();
-            fragment.updateView();
+            fragmentb.updateView();
+            fragmentc.updateView();
+            fragmentd.updateView();
         }
 
     }
